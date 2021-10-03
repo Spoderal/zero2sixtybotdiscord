@@ -1,0 +1,25 @@
+{
+    "Crates":{
+        "Common":{
+            "Contents":["Green Helmet", "Red Helmet", "Blue Helmet", "Decent Racer"],
+            "Price":"500"
+        },
+        "Rare":{
+            "Contents":["Flame Helmet", "Purple Helmet", "Rainbow Helmet", "Turqoise Helmet", "The Stig", "Fast and also Furious", "Pro Racer"],
+            "Price":"800"
+        },
+        "Seasonal":{
+            "Contents":["Blank", "Reverse Blank", "Tangerine", "Flower Power", "Cash Money", "Powerful Racer", "Pretty Racer", "Based Racer", "Horse Racer", "Trololololol", "Troll Helmet", "FeelsHelmetMan", "Doge Helmet", "MLG Helmet", "Cheez-It Helmet", "Troll Racer", "FeelsRacerMan", "Rich Racer", "Dank Racer", "Cheesy Racer"],
+            "Price":"1000"
+        },
+        "Rare Import":{
+            "Contents":["1998 Nissan Skyline GTR R33", "1993 Nissan Silvia S14 RB", "1999 Mazda RX7 RB"],
+            "Price":"50000"
+        },
+        "Common Import":{
+            "Contents":["1995 Honda Civic Hatch Si", "1996 Nissan 300ZX Twin Turbo", "1977 Toyota Celica"],
+            "Price":"25000"
+        }
+       
+    }
+}

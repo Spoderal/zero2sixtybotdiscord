@@ -1,0 +1,54 @@
+{
+    "Parts":{
+        "Tier1Exhaust":{
+            "Name":"Tier1Exhaust",
+            "AddedSpeed":"5",
+            "sellprice":900,
+            "Image":"https://www.roughcountry.com/media/catalog/product/cache/589b0b0e3587c135a53c6bb6cef2d094/j/l/jl_exhaust-_96003.jpg",
+            "Price": "1200"
+        },
+        "Turbo":{
+            "Name":"Turbo",
+            "AddedSpeed":"15",
+            "sellprice":3750,
+            "Image":"https://cdn.shopify.com/s/files/1/0899/4302/products/Screen_Shot_2019-12-04_at_12.10.38_PM_3d6a8667-05b0-494b-9df5-35edcde16ab2_1024x1024.png?v=1595609847",
+            "Price": "5000"
+        },
+        "Tier1Tires":{
+            "Name":"Tier1Tires",
+            "AddedSpeed":"7",
+            "sellprice":562,
+            "Image":"https://static.tirerack.com/content/dam/tires/falken/fa_azenis_rt660_full.jpg?imwidth=1320&impolicy=tow-pdp-main",
+            "Price": "750"
+        },
+        "Tier1Intake":{
+            "Name":"Tier1Intake",
+            "AddedSpeed":"3",
+            "sellprice":700,
+            "Image":"https://res-5.cloudinary.com/knfilters-com/c_lpad,dpr_1.0,f_auto,h_530,q_auto,w_530/media/catalog/product/5/7/57-3063_2.jpg",
+            "Price": "900"
+        },
+        "2JZ-GTE":{
+            "Name":"2JZ-GTE",
+            "AddedSpeed":"21",
+            "sellprice":15000,
+            "Image":"https://jdmofsandiego.com/wp-content/uploads/2018/05/2JZ-VVTI-TWIN-TURBO-1-scaled.jpg",
+            "Price": "20000"
+        },
+        "Tier2Exhaust":{
+            "Name":"Tier2Exhaust",
+            "AddedSpeed":"8",
+            "sellprice":1125,
+            "Image":"https://afepower.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/4/9/49-36801-p_1_1.1629741980.jpg",
+            "Price": "1500"
+        },
+        "Tier1DriftTires":{
+            "Name":"Tier1DriftTires",
+            "DecreaseSpeed":10,
+            "DriftScore": 5,
+            "sellprice":1500,
+            "Price":"2000",
+            "Image":"https://cdn.webshopapp.com/shops/113468/files/182608892/800x600x2/wrap-up-next-0034-04-hdpe-intermediate-radial-drif.jpg"
+        }
+    }
+}
