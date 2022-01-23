@@ -1,54 +1,336 @@
 {
     "Parts":{
-        "Tier1Exhaust":{
-            "Name":"Tier1Exhaust",
+        "t1exhaust":{
+            "Name":"T1Exhaust",
             "AddedSpeed":"5",
             "sellprice":900,
-            "Image":"https://www.roughcountry.com/media/catalog/product/cache/589b0b0e3587c135a53c6bb6cef2d094/j/l/jl_exhaust-_96003.jpg",
-            "Price": "1200"
+            "Price": "1200",
+            "Emote":"<:exhaust1:932046488895365200>",
+            "Tier":"1"
         },
-        "Turbo":{
+        "turbo":{
             "Name":"Turbo",
-            "AddedSpeed":"15",
-            "sellprice":3750,
-            "Image":"https://cdn.shopify.com/s/files/1/0899/4302/products/Screen_Shot_2019-12-04_at_12.10.38_PM_3d6a8667-05b0-494b-9df5-35edcde16ab2_1024x1024.png?v=1595609847",
-            "Price": "5000"
+            "AddedSpeed":"12",
+            "sellprice":7500,
+            "Price": "10000",
+            "Emote":"<:turbo1:932046295839936532>",
+            "Tier":"1"
         },
-        "Tier1Tires":{
-            "Name":"Tier1Tires",
+        "dualturbo":{
+            "Name":"DualTurbo",
+            "AddedSpeed":"15",
+            "sellprice":9000,
+            "Price": "12000",
+            "Emote":"<:turbo2:932046295508607077>",
+            "Tier":"2"
+        },
+        "t1tires":{
+            "Name":"T1Tires",
             "AddedSpeed":"7",
             "sellprice":562,
-            "Image":"https://static.tirerack.com/content/dam/tires/falken/fa_azenis_rt660_full.jpg?imwidth=1320&impolicy=tow-pdp-main",
-            "Price": "750"
+            "Price": "1400",
+            "Emote":"<:tires1:932046342489006080>",
+            "Tier":"1"
         },
-        "Tier1Intake":{
-            "Name":"Tier1Intake",
+        "t1intake":{
+            "Name":"T1Intake",
             "AddedSpeed":"3",
             "sellprice":700,
-            "Image":"https://res-5.cloudinary.com/knfilters-com/c_lpad,dpr_1.0,f_auto,h_530,q_auto,w_530/media/catalog/product/5/7/57-3063_2.jpg",
-            "Price": "900"
+            "Price": "900",
+            "Emote":"<:intake1:932046487389622392>",
+            "Tier":"1"
         },
-        "2JZ-GTE":{
+        "2jz-gte":{
             "Name":"2JZ-GTE",
-            "AddedSpeed":"21",
-            "sellprice":15000,
-            "Image":"https://jdmofsandiego.com/wp-content/uploads/2018/05/2JZ-VVTI-TWIN-TURBO-1-scaled.jpg",
-            "Price": "20000"
+            "AddedSpeed":"25",
+            "sellprice":18750,
+            "Price": "25000",
+            "Emote":"<:engine1:932046487427371059>",
+            "Tier":"1"
         },
-        "Tier2Exhaust":{
-            "Name":"Tier2Exhaust",
-            "AddedSpeed":"8",
+        "v8":{
+            "Name":"V8",
+            "AddedSpeed":"15",
+            "sellprice":11250,
+            "Price": "15000",
+            "Emote":"<:engine1:932046487427371059>",
+            "Tier":"j",
+            "JunkOnly":true
+        },
+        "v6":{
+            "Name":"V6",
+            "AddedSpeed":"10",
+            "sellprice":7500,
+            "Price": "10000",
+            "Emote":"<:engine1:932046487427371059>",
+            "Tier":"j",
+            "JunkOnly":true
+        },
+        "rotary":{
+            "Name":"Rotary",
+            "AddedSpeed":"5",
+            "sellprice":3750,
+            "Price": "5000",
+            "Emote":"<:engine1:932046487427371059>",
+            "Tier":"j",
+            "JunkOnly":true
+        },
+        "j1exhaust":{
+            "Name":"J1Exhaust",
+            "AddedSpeed":"3",
+            "sellprice":750,
+            "Price": "1000",
+            "Emote":"<:j_ehxaust:918019604905869322>",
+            "Tier":"j",
+            "JunkOnly":true
+        },
+        "j1tires":{
+            "Name":"J1Tires",
+            "AddedSpeed":"2",
+            "sellprice":562,
+            "Price": "750",
+            "Emote":"<:j_tires:918022383724552232>",
+            "Tier":"j",
+            "JunkOnly":true
+        },
+        "j1suspension":{
+            "Name":"J1Suspension",
+            "AddedSpeed":"4",
             "sellprice":1125,
-            "Image":"https://afepower.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/4/9/49-36801-p_1_1.1629741980.jpg",
-            "Price": "1500"
+            "Price": "1500",
+            "Emote":"<:j_suspension:918022383313518653>",
+            "Tier":"j",
+            "JunkOnly":true
         },
-        "Tier1DriftTires":{
-            "Name":"Tier1DriftTires",
-            "DecreaseSpeed":10,
+        "v10":{
+            "Name":"V10",
+            "AddedSpeed":"30",
+            "sellprice":37500,
+            "Price": "50000",
+            "Emote":"<:engine2:932046487653842954>",
+            "Tier":"2"
+        },
+        "v12":{
+            "Name":"V12",
+            "AddedSpeed":"50",
+            "sellprice":112500,
+            "Price": "150000",
+            "Emote":"<:engine3:932046487930679326>",
+            "Tier":"3"
+        },
+        "t2exhaust":{
+            "Name":"T2Exhaust",
+            "AddedSpeed":"8",
+            "sellprice":4500,
+            "Price": "6000",
+            "Emote":"<:exhaust2:932046488723394602>",
+            "Tier":"2"
+        },
+        "t2intake":{
+            "Name":"T2Intake",
+            "AddedSpeed":"5",
+            "sellprice":1875,
+            "Price": "2500",
+            "Emote":"<:intake2:932046487213445151>",
+            "Tier":"2"
+        },
+        "t2tires":{
+            "Name":"T2Tires",
+            "AddedSpeed":"7",
+            "sellprice":3750,
+            "Price": "5000",
+            "Emote":"<:tires2:932046341650124882>",
+            "Tier":"2"
+        },
+        "t2drifttires":{
+            "Name":"T2DriftTires",
+            "DecreaseSpeed":7,
+            "DriftScore": 7,
+            "sellprice":3750,
+            "Price":"5000",
+            "Emote":"<:tires2:932046341650124882>",
+            "Tier":"2"
+        },
+        "t3drifttires":{
+            "Name":"T3DriftTires",
+            "DecreaseSpeed":8,
+            "DriftScore": 9,
+            "sellprice":3750,
+            "Price":"6700",
+            "Emote":"<:tires3:932046342442864650>",
+            "Tier":"2"
+        },
+        "t2racesuspension":{
+            "Name":"T2RaceSuspension",
+            "AddedSpeed":8,
+            "DecreasedDrift": 4,
+            "sellprice":4125,
+            "Price":"5500",
+            "Emote":"<:suspension2:932046370930581535>",
+            "Tier":"2"
+        },
+        "t3exhaust":{
+            "Name":"T3Exhaust",
+            "AddedSpeed":"10",
+            "sellprice":6750,
+            "Price": "9000",
+            "Emote":"<:exhaust3:932046487377047572>",
+            "Tier":"3"
+        },
+        "t4exhaust":{
+            "Name":"T4Exhaust",
+            "AddedSpeed":"12",
+            "sellprice":0,
+            "Price": "0",
+            "Emote":"<:exhaust4:932205177430241351>",
+            "Tier":"3"
+        },
+        "t3intake":{
+            "Name":"T3Intake",
+            "AddedSpeed":"7",
+            "sellprice":4500,
+            "Price": "6000",
+            "Emote":"<:intake3:932046486701740062>",
+            "Tier":"3"
+        },
+        "supercharger":{
+            "Name":"SuperCharger",
+            "AddedSpeed":"18",
+            "sellprice":11250,
+            "Price": "15000",
+            "Emote":"<:turbo3:932046295919636560>",
+            "Tier":"3"
+        },
+        
+        "t1drifttires":{
+            "Name":"T1DriftTires",
+            "DecreaseSpeed":5,
             "DriftScore": 5,
             "sellprice":1500,
             "Price":"2000",
-            "Image":"https://cdn.webshopapp.com/shops/113468/files/182608892/800x600x2/wrap-up-next-0034-04-hdpe-intermediate-radial-drif.jpg"
-        }
+            "Emote":"<:tires1:932046342489006080>",
+            "Tier":"1"
+        },
+        "wintertires":{
+            "Name":"WinterTires",
+            "DecreaseSpeed":2,
+            "sellprice":3750,
+            "Price":"5000",
+            "Emote":"<:tires1:932046342489006080>",
+            "Tier":"N/A"
+        },
+        "t1wintertires":{
+            "Name":"T1WinterTires",
+            "DecreaseSpeed":2,
+            "AddedSnow":5,
+            "sellprice":1875,
+            "Price":"2500",
+            "Emote":"<:tires1:932046342489006080>",
+            "Tier":"1"
+        },
+        "t2wintertires":{
+            "Name":"T2WinterTires",
+            "DecreaseSpeed":5,
+            "AddedSnow":10,
+            "sellprice":3750,
+            "Price":"5000",
+            "Emote":"<:tires2:932046341650124882>",
+            "Tier":"2"
+        },
+        "driftsuspension":{
+            "Name":"DriftSuspension",
+            "DecreaseSpeed":10,
+            "DriftScore": 6,
+            "sellprice":3000,
+            "Price":"4000",
+            "Emote":"<:suspension1:932046370725044335>",
+            "Tier":"1"
+        },
+        "t1weightreduction":{
+            "Name":"T1WeightReduction",
+            "AddedSpeed":"3",
+            "DriftScore": 5,
+            "sellprice":3750,
+            "Price": "5000",
+            "Emote":"<:spoiler1:932197371624947722>",
+            "Tier":"1"
+        },
+        "racesuspension":{
+            "Name":"RaceSuspension",
+            "AddedSpeed":6,
+            "DecreasedDrift": 2,
+            "sellprice":2812,
+            "Price":"3750",
+            "Emote":"<:suspension1:932046370725044335>",
+            "Tier":"1"
+        },
+        "bodykit":{
+            "Name":"BodyKit",
+            "AddedSpeed":"None",
+            "Price":"3000",
+            "sellprice":2250,
+            "Emote":"<:spoiler1:932197371624947722>",
+            "Tier":"N/A"
+
+        },
+       "ls1": {
+        "Name":"LS1",
+        "AddedSpeed":"15",
+        "sellprice":10125,
+        "Price": "13500",
+        "Emote":"<:engine2:932046487653842954>",
+        "Tier":"2"
+        },
+        "ls2": {
+            "Name":"LS2",
+            "AddedSpeed":"20",
+            "sellprice":13125,
+            "Price": "17500",
+            "Emote":"<:engine2:932046487653842954>",
+            "Tier":"2"
+            },
+        "ls3": {
+            "Name":"LS3",
+            "AddedSpeed":"25",
+            "sellprice":17250,
+            "Price": "23000",
+            "Emote":"<:engine3:932046487930679326>",
+            "Tier":"3"
+            },
+        "t1spoiler":{
+            "Name":"T1Spoiler",
+            "AddedSpeed":2,
+            "Aero":1,
+            "sellprice":3000,
+            "Price":"4000",
+            "Emote":"<:spoiler1:932197371624947722>",
+            "Tier":"1"
+        },
+        "t1nitrous":{
+            "Name":"T1Nitrous",
+             "Boost":"1",
+             "Price":"3000",
+             "Emote":"<:z_nitrous:916531625444130817>",
+             "Tier":"1"
+        },
+        "no parts":{
+            "Name":"No Parts",
+            "Emote":"<:exhaustdefault:932419391650418709>"
+        },
+        "no intake":{
+           "Emote":"<:intakedefault:932419391734292561>"
+        },
+        "stock exhaust":{
+            "Emote":"<:exhaustdefault:932419391650418709>"
+         },
+         "stock tires":{
+            "Emote":"<:tiresdefault:932419392036306954>"
+         },
+         "stock suspension":{
+            "Emote":"<:suspensiondefault:932419391847563314>"
+         },
+         "no turbo":{
+            "Emote":"<:turbodefault:932419392145354814>"
+         }
     }
 }

@@ -1,0 +1,58 @@
+{
+    "100wins":{
+        "Image":"https://i.ibb.co/h7PLPHz/Logo-Makr-5vz6-Ik.png",
+        "Name":"Race King",
+        "Emote":"<:z_badge_races:927122309871968266>"
+    },
+    "1mcash":{
+        "Image":"https://i.ibb.co/zmBWhMs/Logo-Makr-0-N89u6.png",
+        "Name":"Filthy Rich",
+        "Emote":"<:z_badge_money:927122309263810600>"
+    },
+    "10cars":{
+        "Image":"https://i.ibb.co/k3cbGG1/Logo-Makr-0r-Y8-JW.png",
+        "Name":"Car Collector",
+        "Emote":"<:z_badge_cc:927121560383402015>"
+    },
+    "driftking":{
+        "Image":"https://i.ibb.co/mbVqKLF/Logo-Makr-8i9p-Mj.png",
+        "Name":"Drift King",
+        "Emote":"<:z_badge_dk:927319219593424896>"
+    },
+    "how?":{
+        "Image":"https://i.ibb.co/8sMzCX8/Logo-Makr-1-Ud-TVm.png",
+        "Name":"How?",
+        "Emote":"<:z_badge_how:927122309716799488>"
+
+    },
+    "timemaster":{
+        "Image":"https://i.ibb.co/8sMzCX8/Logo-Makr-1-Ud-TVm.png",
+        "Name":"Time Master",
+        "Emote":"<:z_badge_time:927321726050795592>"
+    },
+    "secret":{
+        "Image":"https://i.ibb.co/VDZWbdt/Logo-Makr-3-Oqko-L.png",
+        "Name":"Secret",
+        "Emote":"<:z_badge_secret:927122308957610015>"
+    },
+    "none":{
+        "Image":"https://i.ibb.co/VDZWbdt/Logo-Makr-3-Oqko-L.png",
+        "Name":"None",
+        "Emote":""
+    },
+    "Flamehouse":{
+        "Image":"https://i.ibb.co/b7K8wSz/Logo-Makr-9-JME7x.png"
+    },
+    "Skullcrunchers":{
+        "Image":"https://i.ibb.co/cYBsC2q/Logo-Makr-6-Bm-Nwt.png"
+    },
+    "Thespeed":{
+        "Image":"https://i.ibb.co/TMdGfNk/Logo-Makr-8-HQc-AO.png"
+    },
+    "Scrapheads":{
+        "Image":"https://i.ibb.co/MnzTmx8/Logo-Makr-33.png"
+    },
+    "Police":{
+        "Image":"https://i.ibb.co/zSdk1zn/Logo-Makr-3-C0c8-C.png"
+    }
+}

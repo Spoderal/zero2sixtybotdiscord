@@ -1,65 +1,153 @@
 {
     "Pfps":{
-        "Default":{
+        "default":{
             "Image":"https://i.ibb.co/Jmf3R8c/Logo-Makr-0-Qoy8-A.png"
         },
-        "Red Helmet":{
+        "red helmet":{
+            "Name":"Red Helmet",
             "Image":"https://i.ibb.co/44h4MY4/Logo-Makr-4-Znd-WE.png"
         },
-        "Green Helmet":{
+        "green helmet":{
+            "Name":"Green Helmet",
             "Image":"https://i.ibb.co/CswRPh4/Logo-Makr-8zl05h.png"
         },
-        "Blue Helmet":{
+        "blue helmet":{
+            "Name":"Blue Helmet",
             "Image":"https://i.ibb.co/J3gXywx/Logo-Makr-5xlw8-B.png"
         },
-        "Flame Helmet":{
+        "flame helmet":{
+            "Name":"Flame Helmet",
             "Image":"https://i.ibb.co/51Hdy4y/Logo-Makr-7sty4j.png"
         },
-        "Rainbow Helmet":{
+        "rainbow helmet":{
+            "Name":"Rainbow Helmet",
             "Image":"https://i.ibb.co/CBt38W5/Logo-Makr-3-Qi-YKV.png"
         },
-        "Purple Helmet":{
+        "purple helmet":{
+            "Name":"Purple Helmet",
             "Image":"https://i.ibb.co/F5vYKsy/Logo-Makr-8lf-Q9m.png"
         },
-        "Pinky Helmet":{
+        "pinky helmet":{
+            "Name":"Pinky Helmet",
             "Image":"https://i.ibb.co/0yjz8dw/pinky.png"
         },
-        "Turqoise Helmet":{
+        "turqoise helmet":{
+            "Name":"Turqoise Helmet",
             "Image":"https://i.ibb.co/sKfLZB6/tur.png"
         },
-        "Midnight Helmet":{
+        "midnight helmet":{
+            "Name":"Midnight Helmet",
             "Image":"https://i.ibb.co/D5yj7q4/mypfp2.png"
         },
-        "Blank":{
+        "blank":{
+            "Name":"Blank",
             "Image":"https://i.ibb.co/THpDgdX/blank.png"
         },
-        "Reverse Blank":{
+        "reverse blank":{
+            "Name":"Reverse Blank",
             "Image":"https://i.ibb.co/V3ZH5xy/reverse-blank.png"
         },
-        "Flower Power":{
+        "flower power":{
+            "Name":"Flower Power",
             "Image":"https://i.ibb.co/PhwTVHd/Flower-Power.png"
         },
-        "Tangerine":{
+        "tangerine":{
+            "Name":"Tangerine",
             "Image":"https://i.ibb.co/V9fk8Xm/Tangerine.png"
         },
-        "Cash Money":{
+        "cash money":{
+            "Name":"Cash Money",
             "Image":"https://i.ibb.co/Qfz3WXG/cashmoney.png"
         },
-        "FeelsHelmetMan":{
+        "feelshelmetman":{
+            "Name":"FeelsHelmetMan",
             "Image":"https://i.ibb.co/4F139yt/pepehelm.png"
         },
-        "MLG Helmet":{
+        "mlg helmet":{
+            "Name":"MLG Helmet",
             "Image":"https://i.ibb.co/2Y1BS1Y/mlghelm.png"
         },
-        "Troll Helmet":{
+        "troll helmet":{
+            "Name":"Troll Helmet",
             "Image":"https://i.ibb.co/FJ3kSM3/trollhelm.png"
         },
-        "Doge Helmet":{
+        "doge helmet":{
+            "Name":"Doge Helmet",
             "Image":"https://i.ibb.co/r25Tjbh/dogehelm.png"
         },
-        "Cheez-It Helmet":{
+        "cheez-it helmet":{
+            "Name":"Cheez-It Helmet",
             "Image":"https://i.ibb.co/VMMPVcD/cheezithelm.png"
+        },
+        "spooky helmet":{
+            "Name":"Spooky Helmet",
+            "Image":"https://i.ibb.co/tBJsZrC/New-Project-25.png"
+        },
+        "fast helmet":{
+            "Name":"Fast Helmet",
+            "Image":"https://i.ibb.co/CvRkfth/Logo-Makr-2bu-Zhw-1.png"
+        },
+        "snow helmet":{
+            "Name":"Snow Helmet",
+            "Image":"https://i.ibb.co/YRdbQrG/snowy-helmet.png"
+        },
+        "festive helmet":{
+            "Name":"Festive Helmet",
+            "Image":"https://i.ibb.co/XYdF4Wg/festive-helmet.png"
+        },
+        "rudolph helmet":{
+            "Name":"Rudolph Helmet",
+            "Image":"https://i.ibb.co/DDBtsHs/rudolph-helmet.png"
+        },
+        "cracked helmet":{
+            "Name":"Cracked Helmet",
+            "Image":"https://i.ibb.co/pn8SfSD/cracked-helmet.png"
+        },
+        "tree helmet":{
+            "Name":"Tree Helmet",
+            "Image":"https://i.ibb.co/Tq8YmZr/christmas-tree-helmet.png"
+        },
+        "gold helmet":{
+            "Name":"Gold Helmet",
+            "Image":"https://i.ibb.co/HT2wTtM/New-Project-78-3.png"
+        },
+        "silver helmet":{
+            "Name":"Silver Helmet",
+            "Image":"https://i.ibb.co/LzqVQmb/New-Project-78-4.png"
+        },
+        "bronze helmet":{
+            "Name":"Bronze Helmet",
+            "Image":"https://i.ibb.co/ZXX8vWZ/New-Project-78-6.png"
+        },
+        "platinum helmet":{
+            "Name":"Platinum Helmet",
+            "Image":"https://i.ibb.co/7JLdPjR/New-Project-78-8.png"
+        },
+        "Titles":{
+            "the stig": "The Stig",
+             "pro racer": "Pro Racer",
+             "decent racer": "Decent Racer",
+              "fast and also furious": "Fast and also Furious",
+               "cool racer": "Cool Racer",
+                "pretty racer": "Pretty Racer",
+                 "trololololol": "Trololololol",
+                  "based racer": "Based Racer",
+                   "horse racer": "Horse Racer",
+                    "powerful racer": "Powerful Racer",
+                     "spooky racer": "Spooky Racer",
+                     "snowy racer": "Snowy Racer",
+                     "festive": "Festive",
+                     "dashing racer":"Dashing Racer",
+                     "give me presents":"Give Me Presents",
+                     "i love gold":"I Love Gold",
+                     "platinum racer":"Platinum Racer",
+                     "noob racer": "Noob Racer"
+
+
         }
+
         
     }
+        
+    
 }
