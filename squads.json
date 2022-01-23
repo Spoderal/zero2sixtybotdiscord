@@ -1,0 +1,145 @@
+{
+    "Squads":{
+        "flamehouse":{
+            "Name":"FlameHouse",
+            "Icon": "https://i.ibb.co/fHpW6dk/Logo-Makr-1qe2-Yy.png",
+            "Members":["Sally", "Max", "John", "Sam"],
+            "Leader":"Hal",
+            "Color":"#ffac43",
+            "Class":"D"
+        },
+        "skullcrunchers":{
+            "Name":"SkullCrunchers",
+            "Icon": "https://i.ibb.co/cbcw9gZ/Logo-Makr-11.png",
+            "Members":["Dale", "Joe", "Sean", "Ashley"],
+            "Leader":"Damien",
+            "Color":"#838383",
+            "Class":"C"
+        },
+        "thespeed":{
+            "Name":"TheSpeed",
+            "Icon": "https://i.ibb.co/273wN5g/Logo-Makr-0n0-Kl-O.png",
+            "Members":["Madison", "Jeremy", "Eli", "X"],
+            "Leader":"Alex",
+            "Color":"#d74631",
+            "Class":"B"
+        },
+        "scrapheads":{
+            "Name":"Scrapheads",
+            "Icon": "https://i.ibb.co/7v0RPkh/Logo-Makr-5c-Pwv-L.png",
+            "Members":["Rex", "Ryan", "Saw", "Heather"],
+            "Leader":"Scrappy",
+            "Color":"#9c4c00",
+            "Class":"A"
+        },
+        "police":{
+            "Name":"Police",
+            "Icon": "https://i.ibb.co/smF2rdJ/Logo-Makr-32.png",
+            "Members":["Casey", "Jeffery", "Katie", "Pam"],
+            "Leader":"Captain",
+            "Color":"#0061b4",
+            "Class":"A"
+        },
+        "sally":{
+            "Name":"Sally",
+            "Car":"sallys 1997 acura integra"
+        },
+        "max":{
+            "Name":"Max",
+            "Car":"maxs 1995 mazda miata"
+        },
+        "john":{
+            "Name":"John",
+            "Car":"johns 1991 toyota mr2"
+        },
+        "sam":{
+            "Name":"Sam",
+            "Car":"sams 1999 mitsubishi eclipse"
+        },
+        "hal":{
+            "Name":"Hal",
+            "Car":"hals 1998 bmw m3 e36"
+        },
+        "dale":{
+            "Name":"Dale",
+            "Car":"dales 2004 subaru wrx sti"
+        },
+        "joe":{
+            "Name":"Joe",
+            "Car":"joes 2010 ford mustang"
+        },
+        "sean":{
+            "Name":"Sean",
+            "Car":"seans 1989 nissan skyline r32"
+        },
+        "ashley":{
+            "Name":"Ashley",
+            "Car":"ashleys 2013 mazda speed3"
+        },
+        "damien":{
+            "Name":"Damien",
+            "Car":"damiens 2001 toyota supra mk4"
+        },
+        "madison":{
+            "Name":"Madison",
+            "Car":"madisons 2015 lotus exige sport"
+        },
+        "jeremy":{
+            "Name":"Jeremy",
+            "Car":"jeremys 2011 audi rs5"
+        },
+        "eli":{
+            "Name":"Eli",
+            "Car":"elis 2020 audi tt rs"
+        },
+        "x":{
+            "Name":"X",
+            "Car":"xs 2012 dodge challenger srt8"
+        },
+        "alex":{
+            "Name":"Alex",
+            "Car":"alexs 1993 porsche 959"
+        },
+        "rex":{
+            "Name":"Rex",
+            "Car":"rexs 1969 ford mustang"
+        },
+        "ryan":{
+            "Name":"Ryan",
+            "Car":"ryans 1990 nissan 240sx"
+        },
+        "saw":{
+            "Name":"Saw",
+            "Car":"saws 1990 bmw m3"
+        },
+        "heather":{
+            "Name":"Heather",
+            "Car":"heathers 1967 chevy camaro"
+        },
+        "scrappy":{
+            "Name":"Scrappy",
+            "Car":"scrappys 1973 ferrari dino"
+        },
+        "casey":{
+            "Name":"Casey",
+            "Car":"police 2009 corvette c6"
+        },
+        "jeffery":{
+            "Name":"Jeffery",
+            "Car":"police 2012 dodge charger srt8"
+        },
+        "katie":{
+            "Name":"Katie",
+            "Car":"police 2010 chevy camaro v6"
+        },
+        "pam":{
+            "Name":"Pam",
+            "Car":""
+        },
+        "captain":{
+            "Name":"Captain",
+            "Car":""
+        }
+
+    }
+}
