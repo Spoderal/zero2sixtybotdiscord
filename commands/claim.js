@@ -5,6 +5,7 @@ module.exports = {
     commands: ['claim'],
     callback: (message, arguments, text, client) => {
           let toclaim = arguments[0]
+          if(!toclaim) return message.channel.send("Specify a reward to claim!")
           let crew = db.fetch(`crew_${message.author.id}`)
           if(!crew) return message.channel.send("You're not in a crew! Join one with z!joincrew [crew name]")
         

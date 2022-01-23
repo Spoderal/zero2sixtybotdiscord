@@ -6,12 +6,12 @@ module.exports = {
     callback: (message, arguments, text) => {
         
       let embed = new Discord.MessageEmbed()
-      .setTitle("William's Crates")
+      .setTitle("Crates")
       .addFields({name: "Profile Items:", value: "Common : $500\nRare : $800\nSeasonal: $1000"})
       .setDescription("The items in these crates give no advantages, they just make your profile look nice.")
-      .setThumbnail('https://i.ibb.co/frnhy0Z/crates.png')
-      .setColor('#9B00B8')
-      message.channel.send(embed)
+      .setThumbnail('https://i.ibb.co/qMt3yb1/Logo-Makr-8-J2-Y1a.png')
+      .setColor('#60b0f4')
+      message.channel.send({embeds: [embed]})
     },
     permissions: '',
     requiredRoles: [],

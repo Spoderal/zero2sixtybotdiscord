@@ -1,5 +1,5 @@
 const { prefix } = require('../config.json')
-const { Client } = require('discord.js');
+const { Client, Intents } = require('discord.js');
 
 
 
@@ -74,8 +74,11 @@ module.exports = (client, commandOptions) => {
   }
 
   // Listen for messages
+  try{
   client.on('message', (message) => {
+    
     if(message.author.bot) return
+    
     const { member, content, guild } = message
 
     for (const alias of commands) {
@@ -134,4 +137,7 @@ module.exports = (client, commandOptions) => {
       }
     }
   })
+}catch(err){
+  return console.log(err)
+}
 }

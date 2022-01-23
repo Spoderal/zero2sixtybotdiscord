@@ -15,13 +15,15 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
        .setTitle(`Rank Info for ${crewname}`)
        .setThumbnail(icons.Icons[crewicon])
-       .addField("Information", `Rank ${crewrank}‎\n\nTickets: ${crewtickets}\n\nCrew Leader: ${crewowner}`)
+       .addField("Information", `Rank ${crewrank}\n\nTickets: ${crewtickets}\n\nCrew Leader: ${crewowner}`)
        .addField("Rewards", `Rank 5: $1,000 Cash\nRank 10: $5,000 Cash\nRank 20: $10,000 Cash\nRank 50: $25,000 Cash\nRank 100: 2018 McLaren Senna`)
-      
+       .setColor("#60b0f4")
 
 
 
-       message.channel.send(embed)
+
+       message.channel.send({embeds: [embed]})
+
     },
     permissions: '',
     requiredRoles: [],

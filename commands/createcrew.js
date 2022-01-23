@@ -28,8 +28,9 @@ module.exports = {
         .setTitle(`${crewname}`)
         .setThumbnail(crewicons.Icons.Default)
         .setDescription(`Created a crew with the name ${crewname}, and the owner as <@${message.author.id}>`)
+        .setColor("#60b0f4")
 
-        message.channel.send(embed)
+        message.channel.send({embeds: [embed]})
         
 
 

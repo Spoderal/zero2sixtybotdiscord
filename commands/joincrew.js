@@ -22,7 +22,7 @@ module.exports = {
             .setThumbnail(crewicons.Icons[crewicon])
             .setDescription(`Joined a crew with the name ${crewname}! Welcome to the crew!`)
     
-            message.channel.send(embed)
+            message.channel.send({embeds: [embed]})
             
 
         }

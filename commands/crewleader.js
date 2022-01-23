@@ -16,7 +16,7 @@ module.exports = {
     const embed = new Discord.MessageEmbed()/*MessageEmbed*/
     .setTitle(`Crew Rank Leaderboard`)
     .setDescription(finalLb)
-    message.channel.send(embed);
+    message.channel.send({embeds: [embed]})
     
     
 

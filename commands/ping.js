@@ -1,14 +1,21 @@
 const discord = require('discord.js')
-const client = new discord.Client()
 module.exports = {
     commands: ['ping'],
-    callback: (message, arguments, text) => {
+    callback: async (message, arguments, text, client) => {
 
       
-        message.channel.send('Loading data').then (async (msg) =>{
-          msg.delete()
-          message.channel.send(`Latency is ${msg.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
-        })
+      const msg = await message.channel.send("Pinging...");
+      const Embed = new discord.MessageEmbed()
+        .setTitle("Pong!")
+        .setAuthor(`${message.author.username}` , message.author.displayAvatarURL())
+        .setDescription(
+          `Latency is ${Math.floor(
+            msg.createdTimestamp - message.createdTimestamp
+          )}ms\n\nPing is ${Math.round(message.client.ws.ping)}ms`
+        )
+        .setColor('#fb644c');
+        
+      msg.edit({embeds: [Embed]});
     
       
     },

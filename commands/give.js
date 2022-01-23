@@ -1,40 +1,55 @@
+const db = require('quick.db')
+const discord = require('discord.js')
+
 module.exports = {
     commands: ['give'],
     callback: (message, arguments, text) => {
-        let db = require('quick.db')
-        let cars = require('../cardb.json')
-        let user = message.mentions.users.first()
-        if(!user) return message.channel.send("Specify a user!")
-        let userid = user.id
-        
-        let created = db.fetch(`created_${userid}`)
-        if(!created) return message.channel.send(`They haven't created an account yet!`)
-        let parts = require('../partsdb.json')
-        let list = cars.Cars
-        let list2 = parts.Parts
-        let bought = arguments.slice(1).join(' ')
-        let usercars = db.fetch(`cars_${userid}`) || []
-        let userparts = db.fetch(`parts_${userid}`) || []
-        let userengines = db.fetch(`engines_${userid}`) || []
-        if(userengines == null) userengines == []
-        if(usercars.length == 8) return message.channel.send("Their 8 spaces are already filled. This is currently the maximum garage space available.")
+        if(message.author.id !== "275419902381260802"){
 
-        if(!bought) return message.channel.send("To use this command, specify the car or part you want to give without any spaces between the car name. Example: z!give 1995 Mazda Miata")
-        if (list[bought]) {
-          
-            if(usercars.includes(cars.Cars[bought].Name)) return message.channel.send("They already own this car!")
-            db.push(`cars_${userid}`, cars.Cars[bought].Name)
-            db.set(`${bought}speed_${userid}`, cars.Cars[bought].Speed)
-            db.set(`${bought}resale_${userid}`, cars.Cars[bought].sellprice)
-            message.channel.send(`You gave ${user} a ${cars.Cars[bought].Name}`);
-            
-         }
-       
-         
-         
+            message.channel.send("You dont have permission to use this command!")
+            return;
+        }
+          else{
+        let togive = arguments[0]
+        let givingto = message.mentions.users.first()
+
         
-        else {
-            message.channel.send("That car or part isn't available yet, suggest it in the support server! In the meantime, check how to use the command by running z!give.")
+        if(!togive) return
+        if(!givingto) return
+        if(togive.toLowerCase() == "premium") 
+        {
+
+            let premium = db.fetch(`premium_${givingto.id}`)
+    
+            if(premium == true) return message.channel.send("This user already has premium!")
+            db.set(`premium_${givingto.id}`, true)
+            db.push(`pfps_${givingto.id}`, "Fast Helmet")
+            db.add(`cash_${message.author.id}`, 50000)
+    
+    
+            let embed = new discord.MessageEmbed()
+            .setTitle("Thank you for your purchase!")
+            .setThumbnail('https://i.ibb.co/9WTq2Sn/Logo-Makr-8-YKJ71.png')
+            .addField("Your new perks", `- 2x Notoriety
+    
+            - 2x Cash in bot races
+            
+            - Special Premium Profile Picture
+            
+            - Increased daily reward
+            
+            - Free daily premium crate
+            
+            - Discount on new cars
+            
+            - Supporting the bots development
+            
+            You also received 50k cash!`)
+            .setColor("#60b0f4")
+            message.channel.send({embeds: [embed]})
+              }
+    
+         
         }
     },
     permissions: '',

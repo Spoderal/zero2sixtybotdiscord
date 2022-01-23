@@ -1,224 +1,399 @@
 const { prefix } = require('../config.json')
-const { MessageEmbed, MessageReaction } = require('discord.js')
 const cars = require('../cardb.json')
+const wait = require('util').promisify(setTimeout);
+const db = require('quick.db')
 
 module.exports = {
-    commands: ['dealership', 'dealer'],
-    callback: (message, arguments, text) => {
-      let mistu = "<:mitsubishi:872308994360881163>"
-      let toyot = "<:toyota:872308997271748639>"
-      let porsche = "<:porsche:872308173216837684>"
-      let bmw = "<:bmw:872310455509581844>"
-      let chevy = "<:chevy:872310486610378795>"
-      let dodge = "<:dodge:872310454821740564>"
-      let ford = "<:ford:872310486820077618>"
-      let honda = "<:honda:872310455635439646>"
-      let hyund = "<:hyundai:872308994495098900>"
-      let jaguar = "<:jaguar:872310454817533983>"
-      let mazda = "<:mazda:872309395273445378>"
-      let nissan = "<:nissan:872309395273445377>"
-      let pontiac = "<:pontiac:872308998202867782>"
-      let acura = "<:acura:872365013606731776>"
-      let lambo = "<:lamborghini:872366245960351775>"
-      let ferrari = "<:ferrari:872308439039217665>"
-      let audi = "<:audi:874817084259967039>"
-      let subaru = "<:subaru:875135724075225139>"
-      let lotus = "<:lotus:879220029764292608>"
-      let viper = "<:viper:879246028337979442>"
-      let aston = "<:aston:880338345543209010>"
-      let mclaren = "<:mclaren:884619536807125062>"
-      let alfa = "<:alfaromeo:884619536635133954>"
+  commands: ['dealership', 'dealer'],
+  callback: async (message, arguments, text, client) => {
+    
+    const { MessageActionRow, MessageSelectMenu, MessageEmbed, MessageButton, DiscordAPIError } = require('discord.js');
+        let opened = db.fetch(`dealeropened_${message.author.id}`)
+        let timeout = 15000
+        if (opened !== null && timeout - (Date.now() - opened) > 0) {
 
-    const embed = new MessageEmbed()
-    embed.setTitle('Dealership')
-    embed.setFooter('z!buy (full car name) to buy a car')
-    embed.setThumbnail("https://i.ibb.co/wWn4Vgq/dealer.png")
-    embed.addField("A Class Cars", "🇦", true)
-    embed.addField("B Class Cars", "🇧", true)
-    embed.addField("C Class Cars", "🇨", true)
-    embed.addField("D Class Cars", "🇩", true)
-    embed.setDescription(`[Official Server](https://discord.gg/SFrujkEs5A)\n[Buy me a coffee!](https://www.buymeacoffee.com/zero2sixty)`)
+          return message.channel.send("You already have the dealership open, wait 15 seconds before opening it again.")
+        }
+        else {
 
-    message.channel.send(embed).then(msg => {
-    msg.react('🇩')
-    msg.react('🇨')
-    msg.react('🇧')
-    msg.react('🇦')
-    msg.react('⬅️')
-  
-    const AFilter = (reaction, user) => reaction.emoji.name === '🇩' && user.id === message.author.id;
-    const BFilter = (reaction, user) => reaction.emoji.name === '🇨' && user.id === message.author.id;
-    const CFilter = (reaction, user) => reaction.emoji.name === '🇧' && user.id === message.author.id;
-    const DFilter = (reaction, user) => reaction.emoji.name === '🇦' && user.id === message.author.id;
-    const EFilter = (reaction, user) => reaction.emoji.name === '⬅️' && user.id === message.author.id;
+      
+        let aemote = "<:z_a_class:898440152437886988>"
+        let bemote = "<:z_b_class:898440152450465852>"
+        let cemote = "<:z_c_class:898440152790220830>"
+        let demote = "<:z_d_class:898440153201278976>"
+        let eemote = "<:z_epic:910446626378756177>"
+        let semote = "<:z_class_s:910447303498825728>"
+        const row = new MessageActionRow()
+        .addComponents(
+          new MessageSelectMenu()
+            .setCustomId('select')
+            .setPlaceholder('Select a class')
+            .addOptions([
+              {
+                label: 'D Class',
+                description: 'Select this for the list of D class cars',
+                value: 'first_option',
+                customId: 'd_class'
+              },
+               {
+                label: 'D Class Page 2',
+                description: 'Select this for the 2nd page of D class cars',
+                value: 'first_option_2',
+                customId: 'd_class'
+              },
+              {
+                label: 'C Class',
+                description: 'Select this for the list of C class cars',
+                value: 'second_option',
+                customId: 'c_class'
+              },
+              {
+                label: 'C Class Page 2',
+                description: 'Select this for the 2nd page of C class cars',
+                value: 'second_option_2',
+                customId: 'c_class'
+              },
+              {
+                label: 'B Class',
+                description: 'Select this for the list of B class cars',
+                value: 'third_option',
+              },
+              {
+                label: 'B Class Page 2',
+                description: 'Select this for the list of B class cars',
+                value: 'third_option_2',
+              },
+              {
+                label: 'A Class',
+                description: 'Select this for the list of A class cars',
+                value: 'fourth_option',
+              },
+              {
+                label: 'S Class',
+                description: 'Select this for the list of S class cars',
+                value: 'fifth_option',
+              },
+              {
+                label: 'E Class',
+                description: 'Select this for the list of E class cars',
+                value: 'sixth_option',
+              },
+              {
+                label: 'U Class',
+                description: 'Select this for the list of U class cars',
+                value: 'special_option',
+              },
+            ]),
+        );
 
+        let embed = new MessageEmbed()
+        .setTitle('Dealership')
+        .setThumbnail("https://i.ibb.co/844BRBp/Logo-Makr-3-V9-MQG-1.png")
+        .addField(`Available Classes`, "*Choose a class from the drop down below*\n\nD Class (Entry)\nC Class\nB Class\nA Class\nS Class\nU Class (Best)\nE Class (Special)", true)
+        .setColor("#60b0f4")
+        .setDescription(`\`z!buy (full car name)\` to buy a car\n\n[Official Server](https://discord.gg/SFrujkEs5A)\n[Buy me a coffee!](https://www.buymeacoffee.com/zero2sixty)`)
+        message.channel.send({embeds: [embed], components: [row]}).then(async msg => {
+          db.set(`dealeropened_${message.author.id}`, Date.now())
 
-    const AClass = msg.createReactionCollector(AFilter, {time: 60000});
-    const BClass = msg.createReactionCollector(BFilter, {time: 60000});
-    const CClass = msg.createReactionCollector(CFilter, {time: 60000});
-    const DClass = msg.createReactionCollector(DFilter, {time: 60000});
-    const EClass = msg.createReactionCollector(EFilter, {time: 60000});
+          try{
+          const filter = (interaction) => interaction.isSelectMenu() && interaction.user.id === message.author.id;
 
+          const collector = message.channel.createMessageComponentCollector({
+            filter,
+            time: 1000 * 15,
+          })
 
-    AClass.on('collect', r => {
-      embed.fields = []
-
-      embed.setTitle('A Dealer')
-      embed.setFooter('Prefix is "z!"')
-      embed.setDescription(`**
-      ${cars.Cars["1964 Peel P50"].Name} : $${numberWithCommas(cars.Cars["1964 Peel P50"].Price)}
-      ${mazda} ${cars.Cars["1995 Mazda Miata"].Name} :  $${numberWithCommas(cars.Cars["1995 Mazda Miata"].Price)}\n
-      ${acura} ${cars.Cars["1997 Acura Integra"].Name} : $${numberWithCommas(cars.Cars["1997 Acura Integra"].Price)}\n
-      ${toyot} ${cars.Cars["1991 Toyota MR2"].Name} : $${numberWithCommas(cars.Cars["1991 Toyota MR2"].Price)}\n 
-      ${pontiac} ${cars.Cars["2002 Pontiac Firebird"].Name} : $${numberWithCommas(cars.Cars["2002 Pontiac Firebird"].Price)}\n
-      ${dodge} ${cars.Cars["2005 Dodge Neon SRT4"].Name} : $${numberWithCommas(cars.Cars["2005 Dodge Neon SRT4"].Price)}\n
-      ${bmw} ${cars.Cars["1998 BMW M3 E36"].Name} : $${numberWithCommas(cars.Cars["1998 BMW M3 E36"].Price)}\n
-      ${nissan} ${cars.Cars["2008 Nissan 350Z"].Name} : $${numberWithCommas(cars.Cars["2008 Nissan 350Z"].Price)}\n
-      ${hyund} ${cars.Cars["2014 Hyundai Genesis Coupe"].Name} : $${numberWithCommas(cars.Cars["2014 Hyundai Genesis Coupe"].Price)}\n
-      ${subaru} ${cars.Cars["2019 Subaru BRZ"].Name} : $${numberWithCommas(cars.Cars["2019 Subaru BRZ"].Price)}\n
-
-      **`)
-      embed.setThumbnail("https://i.ibb.co/Y2Ky02W/Aclass.png")
-                  
-      const userReactions = msg.reactions.cache.filter(reaction => reaction.users.cache.has(message.author.id));
-try {
-	for (const reaction of userReactions.values()) {
-		 reaction.users.remove(message.author.id);
-	}
-} catch (error) {
-	console.error('Failed to remove reactions.');
-}
-      msg.edit(embed)
-  });
-  BClass.on('collect', r => {
-      embed.fields = []
-      embed.setTitle("B Class")
-
-      embed.setFooter('Prefix is "z!"')
-     .setDescription(`**${bmw} ${cars.Cars["2015 BMW M3"].Name} : $${numberWithCommas(cars.Cars["2015 BMW M3"].Price)}\n
-     ${subaru} ${cars.Cars["2004 Subaru WRX STI"].Name} : $${numberWithCommas(cars.Cars["2004 Subaru WRX STI"].Price)}\n
-     ${ford} ${cars.Cars["2010 Ford Mustang"].Name} : $${numberWithCommas(cars.Cars["2010 Ford Mustang"].Price)}\n
-     ${nissan} ${cars.Cars["1989 Nissan Skyline R32"].Name} : $${numberWithCommas(cars.Cars["1989 Nissan Skyline R32"].Price)}\n
-     ${nissan} ${cars.Cars["1995 Nissan Skyline R33"].Name} : $${numberWithCommas(cars.Cars["1995 Nissan Skyline R33"].Price)}\n
-     ${mazda} ${cars.Cars["2013 Mazda Speed3"].Name} : $${numberWithCommas(cars.Cars["2013 Mazda Speed3"].Price)}\n
-     ${chevy} ${cars.Cars["2010 Chevy Camaro V6"].Name} : $${numberWithCommas(cars.Cars["2010 Chevy Camaro V6"].Price)}\n
-     ${toyot} ${cars.Cars["2001 Toyota Supra MK4"].Name} : $${numberWithCommas(cars.Cars["2001 Toyota Supra MK4"].Price)}\n
-     ${mistu} ${cars.Cars["2007 Mitsubishi Evo IX"].Name} : $${numberWithCommas(cars.Cars["2007 Mitsubishi Evo IX"].Price)}\n
-     ${mazda} ${cars.Cars["2002 Mazda RX7 FD"].Name} : $${numberWithCommas(cars.Cars["2002 Mazda RX7 FD"].Price)}\n
-     ${mistu} ${cars.Cars["1994 Mitsubishi 3000GT VR4"].Name} : $${numberWithCommas(cars.Cars["1994 Mitsubishi 3000GT VR4"].Price)}\n
-     ${honda} ${cars.Cars["2009 Honda S2000 CR"].Name} : $${numberWithCommas(cars.Cars["2009 Honda S2000 CR"].Price)}\n
-     ${alfa} ${cars.Cars["2016 Alfa Romeo 4C Spider"].Name} : $${numberWithCommas(cars.Cars["2016 Alfa Romeo 4C Spider"].Price)}\n
-     ${porsche} ${cars.Cars["1994 Porsche 911"].Name} : $${numberWithCommas(cars.Cars["1994 Porsche 911"].Price)}\n
-     **`)
-     embed.setThumbnail("https://i.ibb.co/JjGdrp2/BClass.png")
-
-     const userReactions = msg.reactions.cache.filter(reaction => reaction.users.cache.has(message.author.id));
-     try {
-       for (const reaction of userReactions.values()) {
-          reaction.users.remove(message.author.id);
-       }
-     } catch (error) {
-       console.error('Failed to remove reactions.');
-     }
-      msg.edit(embed)
-  
-  });
-  CClass.on('collect', r => {
-    embed.fields = []
-    embed.setTitle("C Class")
-
-    embed.setFooter('Prefix is "z!"')
-   .setDescription(`**
-   ${audi} ${cars.Cars["2020 Audi TT RS"].Name} : $${numberWithCommas(cars.Cars["2020 Audi TT RS"].Price)}\n
-   ${nissan} ${cars.Cars["2020 Nissan 370Z Nismo"].Name} : $${numberWithCommas(cars.Cars["2020 Nissan 370Z Nismo"].Price)}\n
-   ${porsche} ${cars.Cars["2020 Porsche 718 Cayman"].Name} : $${numberWithCommas(cars.Cars["2020 Porsche 718 Cayman"].Price)}\n
-   ${lotus} ${cars.Cars["2015 Lotus Exige Sport"].Name} : $${numberWithCommas(cars.Cars["2015 Lotus Exige Sport"].Price)}\n
-   ${audi} ${cars.Cars["2011 Audi RS5"].Name} : $${numberWithCommas(cars.Cars["2011 Audi RS5"].Price)}\n
-   ${dodge} ${cars.Cars["2012 Dodge Charger SRT8"].Name} : $${numberWithCommas(cars.Cars["2012 Dodge Charger SRT8"].Price)}\n
-   ${ford} ${cars.Cars["2021 Ford Mustang Mach 1"].Name} : $${numberWithCommas(cars.Cars["2021 Ford Mustang Mach 1"].Price)}\n
-   ${dodge} ${cars.Cars["2012 Dodge Challenger SRT8"].Name} : $${numberWithCommas(cars.Cars["2012 Dodge Challenger SRT8"].Price)}\n
-   ${viper} ${cars.Cars["2017 Dodge Viper ACR"].Name} : $${numberWithCommas(cars.Cars["2017 Dodge Viper ACR"].Price)}\n
-   ${jaguar} ${cars.Cars["2016 Jaguar F Type"].Name} : $${numberWithCommas(cars.Cars["2016 Jaguar F Type"].Price)}\n
-   ${chevy} ${cars.Cars["2009 Corvette C6"].Name} : $${numberWithCommas(cars.Cars["2009 Corvette C6"].Price)}\n
-   ${chevy} ${cars.Cars["2020 Chevy Corvette C8"].Name} : $${numberWithCommas(cars.Cars["2020 Chevy Corvette C8"].Price)}\n
+     
+          collector.on('collect', async (collected) => {
+            
+            const value = collected.values[0];
+            if (value === 'first_option') {
+              await collected.deferUpdate()
+              let embed2
+                    embed2 = new MessageEmbed()
    
+                   .setTitle('D Class')
+         .setFooter('Tip: Purchase a car with "z!buy (full car name)"')
+         .setDescription(`**
+         Page 1\n
+
+         ${cars.Cars["1995 mazda miata"].Emote} ${cars.Cars["1995 mazda miata"].Name} :  $${numberWithCommas(cars.Cars["1995 mazda miata"].Price)}\n
+         ${cars.Cars["1997 acura integra"].Emote} ${cars.Cars["1997 acura integra"].Name} : $${numberWithCommas(cars.Cars["1997 acura integra"].Price)}\n
+         ${cars.Cars["1991 toyota mr2"].Emote} ${cars.Cars["1991 toyota mr2"].Name} : $${numberWithCommas(cars.Cars["1991 toyota mr2"].Price)}\n 
+         ${cars.Cars["2002 pontiac firebird"].Emote} ${cars.Cars["2002 pontiac firebird"].Name} : $${numberWithCommas(cars.Cars["2002 pontiac firebird"].Price)}\n
+         ${cars.Cars["1964 peel p50"].Emote} ${cars.Cars["1964 peel p50"].Name} : $${numberWithCommas(cars.Cars["1964 peel p50"].Price)}\n
+         ${cars.Cars["1999 mitsubishi eclipse"].Emote} ${cars.Cars["1999 mitsubishi eclipse"].Name} : $${numberWithCommas(cars.Cars["1999 mitsubishi eclipse"].Price)}\n
+         ${cars.Cars["2000 toyota corolla levin"].Emote} ${cars.Cars["2000 toyota corolla levin"].Name} : $${numberWithCommas(cars.Cars["2000 toyota corolla levin"].Price)}\n
+         ${cars.Cars["2009 volkswagen golf gti"].Emote} ${cars.Cars["2009 volkswagen golf gti"].Name} : $${numberWithCommas(cars.Cars["2009 volkswagen golf gti"].Price)}\n
+         ${cars.Cars["2005 dodge neon srt4"].Emote} ${cars.Cars["2005 dodge neon srt4"].Name} : $${numberWithCommas(cars.Cars["2005 dodge neon srt4"].Price)}\n
+
+         **`)
+         .setColor("#60b0f4")
+         .setThumbnail("https://i.ibb.co/R9rzFp2/Logo-Makr-0rd-JBs.png")
+         msg.edit({embeds: [embed2], components: [row]})
+        }
+
+        else  if (value === 'first_option_2') {
+          await collected.deferUpdate()
+          let embed2
+                    embed2 = new MessageEmbed()
+                    
+                   .setTitle('D Class')
+                   .setFooter('Tip: Purchase a car with "z!buy (full car name)"')
+         .setDescription(`**
+         Page 2\n
+         
+         ${cars.Cars["1998 bmw m3 e36"].Emote} ${cars.Cars["1998 bmw m3 e36"].Name} : $${numberWithCommas(cars.Cars["1998 bmw m3 e36"].Price)}\n
+         ${cars.Cars["1998 pontiac fiero"].Emote} ${cars.Cars["1998 pontiac fiero"].Name} : $${numberWithCommas(cars.Cars["1998 pontiac fiero"].Price)}\n
+         ${cars.Cars["1989 chevy camaro"].Emote} ${cars.Cars["1989 chevy camaro"].Name} : $${numberWithCommas(cars.Cars["1989 chevy camaro"].Price)}\n
+         ${cars.Cars["2008 nissan 350z"].Emote} ${cars.Cars["2008 nissan 350z"].Name} : $${numberWithCommas(cars.Cars["2008 nissan 350z"].Price)}\n
+         ${cars.Cars["2014 hyundai genesis coupe"].Emote} ${cars.Cars["2014 hyundai genesis coupe"].Name} : $${numberWithCommas(cars.Cars["2014 hyundai genesis coupe"].Price)}\n
+         ${cars.Cars["2019 subaru brz"].Emote} ${cars.Cars["2019 subaru brz"].Name} : $${numberWithCommas(cars.Cars["2019 subaru brz"].Price)}\n
+         **`)
+         .setColor("#60b0f4")
+         .setThumbnail("https://i.ibb.co/R9rzFp2/Logo-Makr-0rd-JBs.png")
+         msg.edit({embeds: [embed2], components: [row]})
+
+            }
+
+            else  if (value === 'second_option') {
+              await collected.deferUpdate()
+              let embed2
+              embed2 = new MessageEmbed()
+
+             .setTitle('C Class')
+   .setFooter('Tip: Purchase a car with "z!buy (full car name)"')
+   .setDescription(`**
+   Page 1\n
+
+   ${cars.Cars["2015 bmw m3"].Emote} ${cars.Cars["2015 bmw m3"].Name} : $${numberWithCommas(cars.Cars["2015 bmw m3"].Price)}\n
+   ${cars.Cars["2004 subaru wrx sti"].Emote} ${cars.Cars["2004 subaru wrx sti"].Name} : $${numberWithCommas(cars.Cars["2004 subaru wrx sti"].Price)}\n
+   ${cars.Cars["2010 ford mustang"].Emote} ${cars.Cars["2010 ford mustang"].Name} : $${numberWithCommas(cars.Cars["2010 ford mustang"].Price)}\n
+   ${cars.Cars["2002 bmw m3 gtr"].Emote} ${cars.Cars["2002 bmw m3 gtr"].Name} : $${numberWithCommas(cars.Cars["2002 bmw m3 gtr"].Price)}\n
+   ${cars.Cars["1989 nissan skyline r32"].Emote} ${cars.Cars["1989 nissan skyline r32"].Name} : $${numberWithCommas(cars.Cars["1989 nissan skyline r32"].Price)}\n
+   ${cars.Cars["1995 nissan skyline r33"].Emote} ${cars.Cars["1995 nissan skyline r33"].Name} : $${numberWithCommas(cars.Cars["1995 nissan skyline r33"].Price)}\n
+   ${cars.Cars["2013 mazda speed3"].Emote} ${cars.Cars["2013 mazda speed3"].Name} : $${numberWithCommas(cars.Cars["2013 mazda speed3"].Price)}\n
+   ${cars.Cars["2010 chevy camaro v6"].Emote} ${cars.Cars["2010 chevy camaro v6"].Name} : $${numberWithCommas(cars.Cars["2010 chevy camaro v6"].Price)}\n
+   ${cars.Cars["2001 toyota supra mk4"].Emote} ${cars.Cars["2001 toyota supra mk4"].Name} : $${numberWithCommas(cars.Cars["2001 toyota supra mk4"].Price)}\n
+   ${cars.Cars["2007 mitsubishi evo ix"].Emote} ${cars.Cars["2007 mitsubishi evo ix"].Name} : $${numberWithCommas(cars.Cars["2007 mitsubishi evo ix"].Price)}
+   **`)
+   .setColor("#60b0f4")
+   .setThumbnail("https://i.ibb.co/PjrDvmT/Logo-Makr-8e-Br0z.png")
+   msg.edit({embeds: [embed2], components: [row]})
+
+            }
+
+            else  if (value === 'second_option_2') {
+              await collected.deferUpdate()
+              let embed2
+              embed2 = new MessageEmbed()
+
+             .setTitle('C Class')
+   .setFooter('Tip: Purchase a car with "z!buy (full car name)"')
+   .setDescription(`**
+   Page 2\n
+   ${cars.Cars["2002 mazda rx7 fd"].Emote} ${cars.Cars["2002 mazda rx7 fd"].Name} : $${numberWithCommas(cars.Cars["2002 mazda rx7 fd"].Price)}\n
+   ${cars.Cars["1994 mitsubishi 3000gt vr4"].Emote} ${cars.Cars["1994 mitsubishi 3000gt vr4"].Name} : $${numberWithCommas(cars.Cars["1994 mitsubishi 3000gt vr4"].Price)}\n
+   ${cars.Cars["2009 honda s2000 cr"].Emote} ${cars.Cars["2009 honda s2000 cr"].Name} : $${numberWithCommas(cars.Cars["2009 honda s2000 cr"].Price)}\n
+   ${cars.Cars["2016 alfa romeo 4c spider"].Emote} ${cars.Cars["2016 alfa romeo 4c spider"].Name} : $${numberWithCommas(cars.Cars["2016 alfa romeo 4c spider"].Price)}\n
+   ${cars.Cars["2018 honda civic type r"].Emote} ${cars.Cars["2018 honda civic type r"].Name} : $${numberWithCommas(cars.Cars["2018 honda civic type r"].Price)}\n
+   ${cars.Cars["2002 nissan skyline r34"].Emote} ${cars.Cars["2002 nissan skyline r34"].Name} : $${numberWithCommas(cars.Cars["2002 nissan skyline r34"].Price)}\n
+   ${cars.Cars["1994 porsche 911"].Emote} ${cars.Cars["1994 porsche 911"].Name} : $${numberWithCommas(cars.Cars["1994 porsche 911"].Price)}\n
+   ${cars.Cars["2004 corvette c5"].Emote} ${cars.Cars["2004 corvette c5"].Name} : $${numberWithCommas(cars.Cars["2004 corvette c5"].Price)}\n
+   **`)
+   .setColor("#60b0f4")
+   .setThumbnail("https://i.ibb.co/PjrDvmT/Logo-Makr-8e-Br0z.png")
+   msg.edit({embeds: [embed2], components: [row]})
+
+            }
+
+            else  if (value === 'third_option') {
+              await collected.deferUpdate()
+              let embed2
+              embed2 = new MessageEmbed()
+
+             .setTitle('B Class')
+   .setFooter('Tip: Purchase a car with "z!buy (full car name)"')
+   .setDescription(`**
+   Page 1\n
+   
+ ${cars.Cars["2020 audi tt rs"].Emote} ${cars.Cars["2020 audi tt rs"].Name} : $${numberWithCommas(cars.Cars["2020 audi tt rs"].Price)}\n
+ ${cars.Cars["2011 bmw m3"].Emote} ${cars.Cars["2011 bmw m3"].Name} : $${numberWithCommas(cars.Cars["2011 bmw m3"].Price)}\n
+ ${cars.Cars["1993 porsche 959"].Emote} ${cars.Cars["1993 porsche 959"].Name} : $${numberWithCommas(cars.Cars["1993 porsche 959"].Price)}\n
+ ${cars.Cars["2020 nissan 370z nismo"].Emote} ${cars.Cars["2020 nissan 370z nismo"].Name} : $${numberWithCommas(cars.Cars["2020 nissan 370z nismo"].Price)}\n
+ ${cars.Cars["2021 toyota supra"].Emote} ${cars.Cars["2021 toyota supra"].Name} : $${numberWithCommas(cars.Cars["2021 toyota supra"].Price)}\n
+ ${cars.Cars["2020 porsche 718 cayman"].Emote} ${cars.Cars["2020 porsche 718 cayman"].Name} : $${numberWithCommas(cars.Cars["2020 porsche 718 cayman"].Price)}\n
+ ${cars.Cars["2015 lotus exige sport"].Emote} ${cars.Cars["2015 lotus exige sport"].Name} : $${numberWithCommas(cars.Cars["2015 lotus exige sport"].Price)}\n
+ ${cars.Cars["2011 audi rs5"].Emote} ${cars.Cars["2011 audi rs5"].Name} : $${numberWithCommas(cars.Cars["2011 audi rs5"].Price)}\n
+ ${cars.Cars["2012 dodge charger srt8"].Emote} ${cars.Cars["2012 dodge charger srt8"].Name} : $${numberWithCommas(cars.Cars["2012 dodge charger srt8"].Price)}\n
+ ${cars.Cars["2019 chevy camaro zl1"].Emote} ${cars.Cars["2019 chevy camaro zl1"].Name} : $${numberWithCommas(cars.Cars["2019 chevy camaro zl1"].Price)})\n
+ **`)
+ .setColor("#60b0f4")
+ .setThumbnail("https://i.ibb.co/NKBYZL2/Logo-Makr-3-Qttqh.png")
+ msg.edit({embeds: [embed2], components: [row]})
+ 
+}
+else  if (value === 'third_option_2') {
+  await collected.deferUpdate()
+  
+  let embed2
+  embed2 = new MessageEmbed()
+  
+  .setTitle('B Class')
+  .setFooter('Tip: Purchase a car with "z!buy (full car name)"')
+  .setDescription(`**
+  Page 2\n
+  
+  ${cars.Cars["2021 ford mustang mach 1"].Emote} ${cars.Cars["2021 ford mustang mach 1"].Name} : $${numberWithCommas(cars.Cars["2021 ford mustang mach 1"].Price)}
+   ${cars.Cars["2012 dodge challenger srt8"].Emote} ${cars.Cars["2012 dodge challenger srt8"].Name} : $${numberWithCommas(cars.Cars["2012 dodge challenger srt8"].Price)}\n
+   ${cars.Cars["2017 dodge viper acr"].Emote} ${cars.Cars["2017 dodge viper acr"].Name} : $${numberWithCommas(cars.Cars["2017 dodge viper acr"].Price)}\n
+   ${cars.Cars["2016 jaguar f type"].Emote} ${cars.Cars["2016 jaguar f type"].Name} : $${numberWithCommas(cars.Cars["2016 jaguar f type"].Price)}\n
+   ${cars.Cars["2009 corvette c6"].Emote} ${cars.Cars["2009 corvette c6"].Name} : $${numberWithCommas(cars.Cars["2009 corvette c6"].Price)}\n
+   ${cars.Cars["2020 chevy corvette c8"].Emote} ${cars.Cars["2020 chevy corvette c8"].Name} : $${numberWithCommas(cars.Cars["2020 chevy corvette c8"].Price)}\n
+   ${cars.Cars["2015 mercedes amg gts"].Emote} ${cars.Cars["2015 mercedes amg gts"].Name} : $${numberWithCommas(cars.Cars["2015 mercedes amg gts"].Price)}\n
+   ${cars.Cars["2016 alfa romeo giulia"].Emote} ${cars.Cars["2016 alfa romeo giulia"].Name} : $${numberWithCommas(cars.Cars["2016 alfa romeo giulia"].Price)}
+   **`)
+   .setColor("#60b0f4")
+   .setThumbnail("https://i.ibb.co/NKBYZL2/Logo-Makr-3-Qttqh.png")
+   msg.edit({embeds: [embed2], components: [row]})
+
+            }
+
+            else  if (value === 'fourth_option') {
+              await collected.deferUpdate()
+
+              let embed2
+              embed2 = new MessageEmbed()
+
+             .setTitle('A Class')
+   .setFooter('Tip: Purchase a car with "z!buy (full car name)"')
+   .setDescription(`**
+   Page 1\n
+   
+   ${cars.Cars["1998 ferrari f355"].Emote} ${cars.Cars["1998 ferrari f355"].Name} : $${numberWithCommas(cars.Cars["1998 ferrari f355"].Price)}\n
+   ${cars.Cars["2021 nissan gtr"].Emote} ${cars.Cars["2021 nissan gtr"].Name} : $${numberWithCommas(cars.Cars["2021 nissan gtr"].Price)}\n
+   ${cars.Cars["1993 jaguar xj220"].Emote} ${cars.Cars["1993 jaguar xj220"].Name} : $${numberWithCommas(cars.Cars["1993 jaguar xj220"].Price)}\n
+   ${cars.Cars["2021 porsche 911 gt3"].Emote} ${cars.Cars["2021 porsche 911 gt3"].Name} : $${numberWithCommas(cars.Cars["2021 porsche 911 gt3"].Price)}\n
+   ${cars.Cars["2017 ford gt"].Emote} ${cars.Cars["2017 ford gt"].Name} : $${numberWithCommas(cars.Cars["2017 ford gt"].Price)}\n
+   ${cars.Cars["2014 lamborghini huracan"].Emote} ${cars.Cars["2014 lamborghini huracan"].Name} : $${numberWithCommas(cars.Cars["2014 lamborghini huracan"].Price)}\n
+   ${cars.Cars["2018 audi r8"].Emote} ${cars.Cars["2018 audi r8"].Name} : $${numberWithCommas(cars.Cars["2018 audi r8"].Price)}\n
+   ${cars.Cars["2014 mclaren 12c"].Emote} ${cars.Cars["2014 mclaren 12c"].Name} : $${numberWithCommas(cars.Cars["2014 mclaren 12c"].Price)}\n
+   ${cars.Cars["2020 mclaren 570s"].Emote} ${cars.Cars["2020 mclaren 570s"].Name} : $${numberWithCommas(cars.Cars["2020 mclaren 570s"].Price)}\n
+   ${cars.Cars["2021 porsche taycan turbo s"].Emote} ${cars.Cars["2021 porsche taycan turbo s"].Name} : $${numberWithCommas(cars.Cars["2021 porsche taycan turbo s"].Price)}
 
    **`)
-   embed.setThumbnail("https://i.ibb.co/wcLj4mK/cclass.png")
+   .setColor("#60b0f4")
+   .setThumbnail("https://i.ibb.co/n05Hy6k/Logo-Makr-1s5-Rq-S.png")
+   msg.edit({embeds: [embed2], components: [row]})
 
-   const userReactions = msg.reactions.cache.filter(reaction => reaction.users.cache.has(message.author.id));
-   try {
-     for (const reaction of userReactions.values()) {
-        reaction.users.remove(message.author.id);
-     }
-   } catch (error) {
-     console.error('Failed to remove reactions.');
-   }
-    msg.edit(embed)
+            }
 
-});
+            else  if (value === 'fifth_option') {
+              await collected.deferUpdate()
 
+              let embed2
+              embed2 = new MessageEmbed()
 
-DClass.on('collect', r => {
-  embed.fields = []
-  embed.setTitle("D Class")
+             .setTitle('S Class')
+   .setFooter('Tip: Purchase a car with "z!buy (full car name)"')
+   .setDescription(`**
+   Page 1\n
 
-  embed.setFooter('Prefix is "z!"')
- .setDescription(`**
- ${nissan} ${cars.Cars["2021 Nissan GTR"].Name} : $${numberWithCommas(cars.Cars["2021 Nissan GTR"].Price)}\n
- ${porsche} ${cars.Cars["2021 Porsche 911 GT3"].Name} : $${numberWithCommas(cars.Cars["2021 Porsche 911 GT3"].Price)}\n
- ${lambo} ${cars.Cars["2014 Lamborghini Huracan"].Name} : $${numberWithCommas(cars.Cars["2014 Lamborghini Huracan"].Price)}\n
- ${audi} ${cars.Cars["2018 Audi R8"].Name} : $${numberWithCommas(cars.Cars["2018 Audi R8"].Price)}\n
- ${mclaren} ${cars.Cars["2014 McLaren 12C"].Name} : $${numberWithCommas(cars.Cars["2014 McLaren 12C"].Price)}\n
- ${ferrari} ${cars.Cars["2010 Ferrari 458 Italia"].Name} : $${numberWithCommas(cars.Cars["2010 Ferrari 458 Italia"].Price)}\n
- ${aston} ${cars.Cars["2016 Aston Martin Vulkan"].Name} : $${numberWithCommas(cars.Cars["2016 Aston Martin Vulkan"].Price)}\n
- ${mclaren} ${cars.Cars["2021 McLaren 720S"].Name} : $${numberWithCommas(cars.Cars["2021 McLaren 720S"].Price)}\n
- ${ferrari} ${cars.Cars["2021 Ferrari SF90 Stradale"].Name} : $${numberWithCommas(cars.Cars["2021 Ferrari SF90 Stradale"].Price)}\n
-
- **`)
- embed.setThumbnail("https://i.ibb.co/wcLj4mK/cclass.png")
-
- const userReactions = msg.reactions.cache.filter(reaction => reaction.users.cache.has(message.author.id));
- try {
-   for (const reaction of userReactions.values()) {
-      reaction.users.remove(message.author.id);
-   }
- } catch (error) {
-   console.error('Failed to remove reactions.');
- }
-  msg.edit(embed)
-
-});
-
-EClass.on('collect', r => {
-  embed.fields = []
-  embed.setTitle('Dealership')
-  embed.setFooter('z!buy (full car name) to buy a car')
-  embed.setThumbnail("https://i.ibb.co/wWn4Vgq/dealer.png")
-  embed.addField("A Class Cars", "🇦", true)
-  embed.addField("B Class Cars", "🇧", true)
-  embed.addField("C Class Cars", "🇨", true)
-  embed.setDescription(`[Official Server](https://discord.gg/SFrujkEs5A)\n[Buy me a coffee!](https://www.buymeacoffee.com/zero2sixty)`)
- const userReactions = msg.reactions.cache.filter(reaction => reaction.users.cache.has(message.author.id));
- try {
-   for (const reaction of userReactions.values()) {
-      reaction.users.remove(message.author.id);
-   }
- } catch (error) {
-   console.error('Failed to remove reactions.');
- }
-  msg.edit(embed)
-
-});
+${cars.Cars["2010 ferrari 458 italia"].Emote} ${cars.Cars["2010 ferrari 458 italia"].Name} : $${numberWithCommas(cars.Cars["2010 ferrari 458 italia"].Price)}\n
+${cars.Cars["2018 lamborghini aventador s"].Emote} ${cars.Cars["2018 lamborghini aventador s"].Name} : $${numberWithCommas(cars.Cars["2018 lamborghini aventador s"].Price)}\n
+${cars.Cars["2016 aston martin vulkan"].Emote} ${cars.Cars["2016 aston martin vulkan"].Name} : $${numberWithCommas(cars.Cars["2016 aston martin vulkan"].Price)}\n
+${cars.Cars["2013 mclaren p1"].Emote} ${cars.Cars["2013 mclaren p1"].Name} : $${numberWithCommas(cars.Cars["2013 mclaren p1"].Price)}\n
+${cars.Cars["2021 mclaren 720s"].Emote} ${cars.Cars["2021 mclaren 720s"].Name} : $${numberWithCommas(cars.Cars["2021 mclaren 720s"].Price)}\n
+${cars.Cars["2021 ferrari sf90 stradale"].Emote} ${cars.Cars["2021 ferrari sf90 stradale"].Name} : $${numberWithCommas(cars.Cars["2021 ferrari sf90 stradale"].Price)}\n
+${cars.Cars["2008 bugatti veyron"].Emote} ${cars.Cars["2008 bugatti veyron"].Name} : $${numberWithCommas(cars.Cars["2008 bugatti veyron"].Price)}\n
+${cars.Cars["2022 aston martin valkyrie"].Emote} ${cars.Cars["2022 aston martin valkyrie"].Name} : $${numberWithCommas(cars.Cars["2022 aston martin valkyrie"].Price)}\n
+${cars.Cars["2016 bugatti chiron"].Emote} ${cars.Cars["2016 bugatti chiron"].Name} : $${numberWithCommas(cars.Cars["2016 bugatti chiron"].Price)}\n
+${cars.Cars["2018 koenigsegg agera"].Emote} ${cars.Cars["2018 koenigsegg agera"].Name} : $${numberWithCommas(cars.Cars["2018 koenigsegg agera"].Price)}
 
 
-    })
+   **`)
+   .setColor("#60b0f4")
+   .setThumbnail("https://i.ibb.co/VSQYBhs/Logo-Makr-5-ZL94f.png")
+   msg.edit({embeds: [embed2], components: [row]})
 
+            }
+
+            else  if (value === 'sixth_option') {
+              await collected.deferUpdate()
+              let embed2
+              embed2 = new MessageEmbed()
+
+             .setTitle('E Class')
+   .setFooter('Tip: Purchase a car with "z!buy (full car name)"')
+   .setDescription(`**
+   Page 1\n
+   
+   ${cars.Cars["1981 dmc delorean"].Emote} ${cars.Cars["1981 dmc delorean"].Name} : $${numberWithCommas(cars.Cars["1981 dmc delorean"].Price)}\n
+   ${cars.Cars["bat tumbler"].Emote} ${cars.Cars["bat tumbler"].Name} : $${numberWithCommas(cars.Cars["bat tumbler"].Price)}\n
+   ${cars.Cars["the ectomobile"].Emote} ${cars.Cars["the ectomobile"].Name} : $${numberWithCommas(cars.Cars["the ectomobile"].Price)}\n
+
+
+   **`)
+   .setColor("#60b0f4")
+   .setThumbnail("https://i.ibb.co/8Pg0v34/Logo-Makr-1-FSxlp.png")
+   msg.edit({embeds: [embed2], components: [row]})
+
+            }
+
+            else  if (value === 'special_option') {
+              await collected.deferUpdate()
+
+              let embed2
+              embed2 = new MessageEmbed()
+
+             .setTitle('U Class')
+   .setFooter('Tip: Purchase a car with "z!buy (full car name)"')
+   .setDescription(`**
+   Page 1\n
+   ${cars.Cars["2020 koenigsegg jesko"].Emote} ${cars.Cars["2020 koenigsegg jesko"].Name} : $${numberWithCommas(cars.Cars["2020 koenigsegg jesko"].Price)}
+
+  **
+   `)
+   .setColor("#60b0f4")
+   .setThumbnail("https://i.ibb.co/6gjkPzZ/Logo-Makr-3iqn-NC.png")
+   msg.edit({embeds: [embed2], components: [row]})
+
+            }
+
+            
+          })
+        } catch(err) {
+          return msg.reply(`Error: ${err}`)
+        }
+  
+      })
+    }    
     },
     permissions: '',
     requiredRoles: [],
   }
+  
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function convert(val) {
+  
+  // thousands, millions, billions etc..
+  var s = ["", "k", "m", "b", "t"];
+
+  // dividing the value by 3.
+  var sNum = Math.floor(("" + val).length / 3);
+
+  // calculating the precised value.
+  var sVal = parseFloat((
+    sNum != 0 ? (val / Math.pow(1000, sNum)) : val).toPrecision(2));
+  
+  if (sVal % 1 != 0) {
+      sVal = sVal.toFixed(1);
+  }
+
+  // appending the letter to precised val.
+  return sVal + s[sNum];
 }

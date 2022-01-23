@@ -1,5 +1,6 @@
 const db = require('quick.db')
 const lodash = require('lodash')
+const { MessageEmbed } = require('discord.js')
 module.exports = {
     commands: ['open', 'opencrate'],
     callback: (message, arguments, text) => {
@@ -8,28 +9,33 @@ module.exports = {
         let crates = require('../cratedb.json')
         let colors = require("../colordb.json")
        
-        let list = ['Common', 'Rare', 'Seasonal']
-
+        let list = ['common', 'rare', 'seasonal']
+        
         let bought = arguments[0]
         let cash = db.fetch(`cash_${message.author.id}`)
-
+        let titlelist = ["the stig", "decent racer", "fast and also furious", "pro racer" , "powerful racer", "pretty racer" , "based racer" , "trololololol", "horse racer" , "troll racer" , "feelsracerman", "cheesy racer","dank racer", "rich racer"]
         if(!bought) return message.channel.send("**To use this command, specify the crate you want to buy. To check what crates are available check the crates shop by sending z!crates.**")
-        if(!crates.Crates[bought]) return message.channel.send("**That crate isn't available yet, suggest it in the support server! In the meantime, check how to use the command by running z!open.**")
+        if(!crates.Crates[bought.toLowerCase()]) return message.channel.send("**That crate isn't available yet, suggest it in the support server! In the meantime, check how to use the command by running z!open.**")
+        if(!crates.Crates[bought.toLowerCase()].Price) return message.channel.send("Thats not a purchasable crate!")
       
 
        
-          
-            if (cash < crates.Crates[bought].Price) return message.channel.send(`You dont have enough cash! This crate costs ${crates.Crates[bought].Price}`)
-            let cratecontents = crates.Crates[bought].Contents
-            let randomitem = lodash.sample(cratecontents)
-            db.subtract(`cash_${message.author.id}`, crates.Crates[bought].Price);
+        if (cash < crates.Crates[bought.toLowerCase()].Price) return message.channel.send(`You dont have enough cash! This crate costs ${crates.Crates[bought.toLowerCase()].Price}`)
+        let cratecontents = crates.Crates[bought.toLowerCase()].Contents
+        let randomitem = lodash.sample(cratecontents)
+        db.subtract(`cash_${message.author.id}`, crates.Crates[bought.toLowerCase()].Price);
+        let embed = new MessageEmbed()
         
-            if(randomitem == "The Stig" || randomitem == "Decent Racer" || randomitem == "Fast and also Furious" || randomitem == "Pro Racer" || randomitem == "Powerful Racer" || randomitem == "Pretty Racer" || randomitem == "Based Racer" || randomitem == "Trololololol" || randomitem == "Horse Racer" || randomitem == "Troll Racer" || randomitem == "FeelsRacerMan" || randomitem == "Cheesy Racer" || randomitem == "Dank Racer" || randomitem == "Rich Racer") {
+            if(pfps.Pfps.Titles[randomitem]) {
                 message.channel.send(`You opened a ${bought} and won a "${randomitem}" profile title!`);
+                db.push(`titles_${message.author.id}`, randomitem)
             }
-           else {
+           else if(pfps.Pfps[randomitem]) {
             db.push(`pfps_${message.author.id}`, randomitem)
-            message.channel.send(`You opened a ${bought} and won a ${randomitem} profile image! Preview:${pfps.Pfps[randomitem].Image}`);
+           
+            embed.setTitle("Preview")
+            embed.setImage(pfps.Pfps[randomitem].Image)
+            message.channel.send({content:`You opened a ${bought} and won a ${randomitem} profile image!`, embeds: [embed]});
 
            }
            

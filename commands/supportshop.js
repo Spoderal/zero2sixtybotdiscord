@@ -14,7 +14,7 @@ module.exports = {
         .setColor("60b0f4")
         .setThumbnail('https://i.ibb.co/M6qbDjg/moeybag.png')
         .setFooter(`Your current balance: $${numberWithCommas(cash)}`)
-        message.reply(embed)
+        message.reply({embeds: embed})
     },
     permissions: '',
     requiredRoles: [],

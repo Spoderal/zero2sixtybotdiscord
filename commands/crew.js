@@ -21,12 +21,13 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
        .setTitle(`Info for ${crewname}`)
        .setThumbnail(icons.Icons[crewicon])
-       .addField("Information", `${membercount} members\n\nRank ${crewrank}‎\n\nCrew Leader: ${crewowner}`)
-      
+       .addField("Information", `${membercount} members\n\nRank ${crewrank}\n\nCrew Leader: ${crewowner}`)
+      .setColor("#60b0f4")
 
 
 
-       message.channel.send(embed)
+       message.channel.send({embeds: [embed]})
+
     },
     permissions: '',
     requiredRoles: [],

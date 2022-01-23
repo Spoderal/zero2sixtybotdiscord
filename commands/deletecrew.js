@@ -25,7 +25,8 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
         .setDescription(`Delete a crew with the name ${crewname}, and the owner as <@${message.author.id}>`)
 
-        message.channel.send(embed)
+        message.channel.send({embeds: [embed]})
+
         
 
 
